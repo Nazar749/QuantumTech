@@ -1,0 +1,1263 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumTech | Магазин техніки майбутнього</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-purple: #b300ff;
+            --dark-space: #0a0a1a;
+            --star-light: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-space);
+            color: white;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(179, 0, 255, 0.05) 0%, transparent 20%);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: var(--star-light);
+            border-radius: 50%;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: relative;
+            z-index: 100;
+            background: rgba(10, 10, 30, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--neon-blue);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .auth-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: none;
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        .signup-btn {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(179, 0, 255, 0.7);
+        }
+
+        .products {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 3px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.5s, box-shadow 0.5s;
+            position: relative;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            transition: transform 0.5s;
+            z-index: 2;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                var(--neon-blue)
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .product-card:hover .product-image::before {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% { opacity: 0; left: -50%; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; left: 150%; }
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .product-description {
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-button {
+            flex: 1;
+            padding: 10px;
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .product-button:hover {
+            background: rgba(0, 242, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+        }
+
+        .add-to-cart {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+            border: none;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--neon-purple);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(0, 242, 255, 0.2);
+            z-index: 1000;
+            transition: right 0.3s;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-img img {
+            max-width: 70%;
+            max-height: 70%;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: var(--neon-blue);
+        }
+
+        .cart-item-price {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-remove {
+            color: #ff5555;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 40, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            text-align: center;
+        }
+
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: none;
+        }
+
+        .google-btn {
+            background: #4285F4;
+            color: white;
+        }
+
+        .facebook-btn {
+            background: #3b5998;
+            color: white;
+        }
+
+        .apple-btn {
+            background: #000;
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .divider-text {
+            padding: 0 15px;
+            opacity: 0.7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .switch-form a {
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+
+        footer {
+            background: rgba(10, 10, 30, 0.8);
+            padding: 50px 5%;
+            margin-top: 100px;
+            border-top: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--neon-purple);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .cart-sidebar.active {
+                right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <header>
+        <div class="logo">QuantumTech</div>
+        <nav>
+            <ul>
+                <li><a href="#">Головна</a></li>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Tech Lab</a></li>
+                <li><a href="#">Блог</a></li>
+                <li><a href="#">Контакти</a></li>
+                <li>
+                    <div class="cart-icon" id="cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="auth-buttons">
+                        <button class="auth-btn login-btn" id="login-btn">Увійти</button>
+                        <button class="auth-btn signup-btn" id="signup-btn">Реєстрація</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Технології майбутнього вже тут</h1>
+        <p>Відкрийте для себе нову еру пристроїв з імерсивним 3D-шопінгом, AI-асистентом та ексклюзивними технологіями.</p>
+        <button class="cta-button">Почати подорож</button>
+    </section>
+
+    <section class="products">
+        <h2 class="section-title">Гарячі новинки</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://x-phone.plus/wp-content/uploads/x-phone-lite.png" alt="Смартфон">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">QuantumPhone X</h3>
+                    <div class="product-price">32 999 ₴</div>
+                    <p class="product-description">Смартфон з голографічним дисплеєм та AI-асистентом.</p>
+                    <div class="product-actions">
+                        <button class="product-button">Детальніше</button>
+                        <button class="product-button add-to-cart" data-id="1" data-name="QuantumPhone X" data-price="32999">В кошик</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://www.ixbt.com/img/n1/news/2023/6/5/70cf98bcly1hg3qn13akij21o0280nnw_large.jpg" alt="Ноутбук">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">NeonBook Pro</h3>
+                    <div class="product-price">45 999 ₴</div>
+                    <p class="product-description">Ноутбук з сенсорною OLED-панеллю та вбудованим AR.</p>
+                    <div class="product-actions">
+                        <button class="product-button">Детальніше</button>
+                        <button class="product-button add-to-cart" data-id="2" data-name="NeonBook Pro" data-price="45999">В кошик</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://pngimg.com/uploads/watches/watches_PNG9905.png" alt="Годинник">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">CyberWatch 7</h3>
+                    <div class="product-price">18 999 ₴</div>
+                    <p class="product-description">Розумний годинник з голографічним інтерфейсом.</p>
+                    <div class="product-actions">
+                        <button class="product-button">Детальніше</button>
+                        <button class="product-button add-to-cart" data-id="3" data-name="CyberWatch 7" data-price="18999">В кошик</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Ваше замовлення</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+        </div>
+        <div class="cart-total" id="cart-total">
+            Всього: 0 ₴
+        </div>
+        <button class="checkout-btn">Оформити замовлення</button>
+    </div>
+
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-login">&times;</button>
+            <h3 class="modal-title">Увійти в акаунт</h3>
+            
+            <div class="social-login">
+                <button class="social-btn google-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+                    </svg>
+                    Увійти через Google
+                </button>
+                <button class="social-btn facebook-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path>
+                    </svg>
+                    Увійти через Facebook
+                </button>
+                <button class="social-btn apple-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78-1.01 2.18-1.33 3.3-1.13 1.43.23 2.71 1.04 3.36 2.41-2.91 1.76-2.37 6.47.48 7.47-.6 1.56-1.38 3.09-2.54 4.5zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.84-1.83 1.5-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
+                    </svg>
+                    Увійти через Apple
+                </button>
+            </div>
+
+            <div class="divider">
+                <span class="divider-text">або</span>
+            </div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Пароль</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Увійти</button>
+            </form>
+
+            <div class="switch-form">
+                Немає акаунту? <a href="#" id="switch-to-signup">Зареєструватися</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-signup">&times;</button>
+            <h3 class="modal-title">Створити акаунт</h3>
+            
+            <div class="social-login">
+                <button class="social-btn google-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+                    </svg>
+                    Зареєструватися через Google
+                </button>
+                <button class="social-btn facebook-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path>
+                    </svg>
+                    Зареєструватися через Facebook
+                </button>
+                <button class="social-btn apple-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24.1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78-1.01 2.18-1.33 3.3-1.13 1.43.23 2.71 1.04 3.36 2.41-2.91 1.76-2.37 6.47.48 7.47-.6 1.56-1.38 3.09-2.54 4.5zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.84-1.83 1.5-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
+                        </svg>
+Зареєструватися через Apple
+</button>
+</div>
+
+        <div class="divider">
+            <span class="divider-text">або</span>
+        </div>
+
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signup-name">Ім'я</label>
+                <input type="text" id="signup-name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Пароль</label>
+                <input type="password" id="signup-password" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm">Підтвердіть пароль</label>
+                <input type="password" id="signup-confirm" required>
+            </div>
+            <button type="submit" class="submit-btn">Зареєструватися</button>
+        </form>
+
+        <div class="switch-form">
+            Вже є акаунт? <a href="#" id="switch-to-login">Увійти</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>QuantumTech</h3>
+            <p>Технології майбутнього вже сьогодні. Ми постачаємо інноваційні пристрої з 2025 року.</p>
+        </div>
+        <div class="footer-column">
+            <h3>Магазин</h3>
+            <ul>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Акції</a></li>
+                <li><a href="#">Новинки</a></li>
+                <li><a href="#">Бренди</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Клієнтам</h3>
+            <ul>
+                <li><a href="#">Доставка та оплата</a></li>
+                <li><a href="#">Гарантія</a></li>
+                <li><a href="#">Повернення</a></li>
+                <li><a href="#">Кредит</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Контакти</h3>
+            <ul>
+                <li>м. Київ, вул. Логіка, 42</li>
+                <li>+ 38 (093) 170-74-40</li>
+                <li>kiev@logikaschool.com</li>
+                <li>Працюємо 24/7</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script>
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        const starsCount = 200;
+        
+        for (let i = 0; i < starsCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            const size = Math.random() * 3;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            star.style.animationDuration = `${3 + Math.random() * 7}s`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            
+            starsContainer.appendChild(star);
+        }
+    }
+
+    let cart = [];
+    const cartIcon = document.getElementById('cart-icon');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCart = document.getElementById('close-cart');
+    const cartItems = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotal = document.getElementById('cart-total');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    cartIcon.addEventListener('click', () => {
+        cartSidebar.classList.add('active');
+    });
+
+    closeCart.addEventListener('click', () => {
+        cartSidebar.classList.remove('active');
+    });
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const price = parseInt(button.getAttribute('data-price'));
+            
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            cartSidebar.classList.add('active');
+            
+            button.textContent = 'Додано!';
+            button.style.backgroundColor = '#4CAF50';
+            setTimeout(() => {
+                button.textContent = 'В кошик';
+                button.style.backgroundColor = '';
+            }, 1000);
+        });
+    });
+
+    function updateCart() {
+        cartItems.innerHTML = '';
+        
+        let total = 0;
+        
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            
+            cartItem.innerHTML = `
+                <div class="cart-item-img">
+                    <img src="https://via.placeholder.com/100x100/0a0a1a/ffffff?text=${item.name.substring(0, 1)}" alt="${item.name}">
+                </div>
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${item.name}</h4>
+                    <div class="cart-item-price">${item.price} ₴ × ${item.quantity} = ${item.price * item.quantity} ₴</div>
+                    <button class="cart-item-remove" data-id="${item.id}">Видалити</button>
+                </div>
+            `;
+            
+            cartItems.appendChild(cartItem);
+            total += item.price * item.quantity;
+        });
+        
+        cartTotal.textContent = `Всього: ${total} ₴`;
+        
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = count;
+        
+        document.querySelectorAll('.cart-item-remove').forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                cart = cart.filter(item => item.id !== id);
+                updateCart();
+            });
+        });
+    }
+
+    const loginModal = document.getElementById('login-modal');
+    const signupModal = document.getElementById('signup-modal');
+    const loginBtn = document.getElementById('login-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const closeLogin = document.getElementById('close-login');
+    const closeSignup = document.getElementById('close-signup');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToLogin = document.getElementById('switch-to-login');
+
+    loginBtn.addEventListener('click', () => {
+        loginModal.classList.add('active');
+    });
+
+    signupBtn.addEventListener('click', () => {
+        signupModal.classList.add('active');
+    });
+
+    closeLogin.addEventListener('click', () => {
+        loginModal.classList.remove('active');
+    });
+
+    closeSignup.addEventListener('click', () => {
+        signupModal.classList.remove('active');
+    });
+
+    switchToSignup.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginModal.classList.remove('active');
+        signupModal.classList.add('active');
+    });
+
+    switchToLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        signupModal.classList.remove('active');
+        loginModal.classList.add('active');
+    });
+
+    [loginModal, signupModal].forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    });
+
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Вхід успішний!');
+        loginModal.classList.remove('active');
+    });
+
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const password = document.getElementById('signup-password').value;
+        const confirm = document.getElementById('signup-confirm').value;
+        
+        if (password !== confirm) {
+            alert('Паролі не співпадають!');
+            return;
+        }
+        
+        alert('Реєстрація успішна!');
+        signupModal.classList.remove('active');
+    });
+
+    window.addEventListener('load', createStars);
+</script>
+<style>
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0.5deg); }
+        50% { transform: translateY(-15px) rotate(-0.5deg); }
+    }
+
+    .hero h1 {
+        animation: float 6s ease-in-out infinite;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+
+    .product-card {
+        transform-style: preserve-3d;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+        box-shadow: 0 20px 40px rgba(0, 242, 255, 0.3),
+                    0 0 0 1px rgba(0, 242, 255, 0.1);
+    }
+
+    .cta-button {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to bottom right,
+            transparent,
+            transparent,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent,
+            transparent
+        );
+        transform: rotate(30deg);
+        animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+        0% { left: -100%; opacity: 0; }
+        20% { opacity: 1; }
+        100% { left: 100%; opacity: 0; }
+    }
+
+    .modal-content {
+        transform: scale(0.8) translateY(50px);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .modal.active .modal-content {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+    .loading-matrix {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--dark-space);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .matrix-code {
+        color: var(--neon-blue);
+        font-family: monospace;
+        font-size: 18px;
+        line-height: 1.5;
+        text-align: center;
+        max-width: 80%;
+        overflow: hidden;
+    }
+
+    @keyframes border-pulse {
+        0%, 100% { box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-purple); }
+        50% { box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-purple); }
+    }
+
+    .product-card:hover {
+        animation: border-pulse 2s infinite;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingScreen = document.createElement('div');
+        loadingScreen.className = 'loading-matrix';
+        loadingScreen.innerHTML = `
+            <div class="matrix-code" id="matrix-code"></div>
+            <p style="color: var(--neon-blue); margin-top: 20px;">QuantumTech OS Завантаження...</p>
+        `;
+        document.body.prepend(loadingScreen);
+
+        const chars = "01量子技術クオンタムテクノロジー";
+        const codeElement = document.getElementById('matrix-code');
+        
+        function generateMatrixCode() {
+            let code = '';
+            for (let i = 0; i < 100; i++) {
+                code += chars[Math.floor(Math.random() * chars.length)];
+                if (Math.random() > 0.9) code += '\n';
+            }
+            codeElement.textContent = code;
+        }
+
+        const matrixInterval = setInterval(generateMatrixCode, 100);
+
+        setTimeout(() => {
+            clearInterval(matrixInterval);
+            loadingScreen.style.opacity = 0;
+            setTimeout(() => {
+                loadingScreen.remove();
+            }, 500);
+        }, 3000);
+
+        const headings = document.querySelectorAll('h1, h2, h3');
+        headings.forEach((heading, i) => {
+            heading.style.animationDelay = `${i * 0.1}s`;
+            heading.classList.add('wave-animation');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 20;
+            const y = (window.innerHeight / 2 - e.pageY) / 20;
+            document.querySelector('.hero h1').style.transform = 
+                `translateY(${y}px) translateX(${x}px) rotateY(${x}deg) rotateX(${-y}deg)`;
+        });
+    });
+</script>
+</body> 
+</html>
